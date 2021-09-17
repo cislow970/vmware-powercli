@@ -68,91 +68,91 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 6. ***RefreshCacheCategory*** Make the local cache of category IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	- ``RefreshCacheCategory -VIServer vc.domain.local``
+		* ``RefreshCacheCategory -VIServer vc.domain.local``
 
 7. ***RefreshCacheTagxCategory*** Make the local cache of Tag IDs for each Category.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	- ``RefreshCacheTagxCategory -VIServer vc.domain.local``
+		* ``RefreshCacheTagxCategory -VIServer vc.domain.local``
 
 8. ***ListTagsAssociatedToVM*** Lists all tags associated with the specified virtual machine.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
-	- -VMName: Name of the virtual machine to search for associated tags (*)
-	- -ExportCSV: Save the result in CSV file
+		* -VIServer: vCenter to work on (*)
+		* -VMName: Name of the virtual machine to search for associated tags (*)
+		* -ExportCSV: Save the result in CSV file
 
 	2. Examples:
-	- ``ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X``
-	- ``ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X -ExportCSV``
+		* ``ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X``
+		* ``ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X -ExportCSV``
 
 9. ***ListVMsAssociatedToTag*** Lists all virtual machines associated with the specified tag.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
-	- -TagName: Name of the tag to search for associated virtual machines (*)
-	- -ExportCSV: Save the result in CSV file
+		* -VIServer: vCenter to work on (*)
+		* -TagName: Name of the tag to search for associated virtual machines (*)
+		* -ExportCSV: Save the result in CSV file
 
 	2. Examples:
-	- ``ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA"``
-	- ``ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA" -ExportCSV``
+		* ``ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA"``
+		* ``ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA" -ExportCSV``
 
 10. ***ListTagsAssociatedToVMs*** Lists the tags associated with the specified virtual machine list. The names of the virtual machines to be queried must be entered in a TXT file, one for each row.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
-	- -VMList: File containing the list of virtual machines to search for associated tags **(MAX 2000 VMs)** (*)
-	- -ExportCSV: Save the result in CSV file
+		* -VIServer: vCenter to work on (*)
+		* -VMList: File containing the list of virtual machines to search for associated tags **(MAX 2000 VMs)** (*)
+		* -ExportCSV: Save the result in CSV file
 
 	2. Examples:
-	- ``ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt"``
-	- ``ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt" -ExportCSV``
+		* ``ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt"``
+		* ``ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt" -ExportCSV``
 
 11. ***ListVMsAssociatedToTags*** Lists the virtual machines associated with the specified tag list. The names of the tags to be queried must be placed in a TXT file, one for each row.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
-	- -TagList: File containing the list of tags to search for associated virtual machines. **(MAX 15 Tags)** (*)
-	- -TagOperator: If specified with value AND ***(different from default value OR)*** then the result will consist only of the virtual machines that have all the tags in the list in common **(allowed values: OR | AND)**
-	- -ExportCSV: Save the result in CSV file
+		* -VIServer: vCenter to work on (*)
+		* -TagList: File containing the list of tags to search for associated virtual machines. **(MAX 15 Tags)** (*)
+		* -TagOperator: If specified with value AND ***(different from default value OR)*** then the result will consist only of the virtual machines that have all the tags in the list in common **(allowed values: OR | AND)**
+		* -ExportCSV: Save the result in CSV file
 
 	2. Examples:
-	- ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt"``
-	- ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ExportCSV``
-	- ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND``
-	- ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ExportCSV``
+		* ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt"``
+		* ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ExportCSV``
+		* ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND``
+		* ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ExportCSV``
 
 12. ***ListObjectsAssociatedToTags*** Lists the objects of a given type associated with the specified tag list. The names of the tags to be queried must be placed in a TXT file, one for each row.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
-	- -TagList: File containing the list of tags to search for associated virtual machines. **(MAX 15 Tags)** (*)
-	- -TagOperator: If specified with value AND ***(different from default value OR)*** then the result will consist only of the objects that have all the tags in the list in common **(allowed values: OR | AND)**
-	- -ObjectType: Type of object on which to search for association with the tags specified in the list **(allowed values: Cluster | ESX | Datastore | VM | All)** (*)
-	- -ExportCSV: Save the result in CSV file
+		* -VIServer: vCenter to work on (*)
+		* -TagList: File containing the list of tags to search for associated virtual machines. **(MAX 15 Tags)** (*)
+		* -TagOperator: If specified with value AND ***(different from default value OR)*** then the result will consist only of the objects that have all the tags in the list in common **(allowed values: OR | AND)**
+		* -ObjectType: Type of object on which to search for association with the tags specified in the list **(allowed values: Cluster | ESX | Datastore | VM | All)** (*)
+		* -ExportCSV: Save the result in CSV file
 
 	2. Examples:
-	- ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType Datastore``
-	- ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType ESX``
-	- ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType All``
-	- ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType All -ExportCSV``
-	- ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All``
-	- ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All -ExportCSV``
+		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType Datastore``
+		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType ESX``
+		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType All``
+		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType All -ExportCSV``
+		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All``
+		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All -ExportCSV``
 
 13. ***SearchTag*** cerca tutti i tag che contengono la stringa indicata (utilizzo cache implicito). 
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
-	- -SearchString: String to search for (*)
-	- -ExportCSV: Save the result in CSV file
+		* -VIServer: vCenter to work on (*)
+		* -SearchString: String to search for (*)
+		* -ExportCSV: Save the result in CSV file
 
 	2. Examples:
-	- ``SearchTag -VIServer vc.domain.local -SearchString "AUTOMATION"``
-	- ``SearchTag -VIServer vc.domain.local -SearchString "AUTOMATION" -ExportCSV``
+		* ``SearchTag -VIServer vc.domain.local -SearchString "AUTOMATION"``
+		* ``SearchTag -VIServer vc.domain.local -SearchString "AUTOMATION" -ExportCSV``
 
