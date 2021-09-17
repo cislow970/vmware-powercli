@@ -389,7 +389,6 @@ function ListTagsAssociatedToVM() {
     if ($useThisVMID) {
         $tagList = $allTagAssociationMethodSVC.list_attached_tags($useThisVMID)
         if ($tagList) {
-            # Get data from cache
             $result = @()
             $allTags = LoadCacheTag $VIServer
             $allCategories = LoadCacheCategory $VIServer
@@ -478,7 +477,7 @@ function ListVMsAssociatedToTag() {
                 }
             }
 
-            $result | Out-GridView -Title "VMs associated to Tag [${TagName}] (cache)"
+            $result | Out-GridView -Title "VMs associated to Tag [${TagName}]"
         } else {
             Write-Host "Tag ${TagName} is not associated to any VM" -ForegroundColor Red
             Disconnect-CisServer -Server $VIServer -Confirm:$false
@@ -583,7 +582,7 @@ function ListTagsAssociatedToVMs() {
             }
         }
 
-        $result | Out-GridView -Title "Tags associated to VMs (cache)"
+        $result | Out-GridView -Title "Tags associated to VMs"
     } else {
         Write-Host "VMs is not associated to any Tag" -ForegroundColor Red
         Disconnect-CisServer -Server $VIServer -Confirm:$false
@@ -687,11 +686,11 @@ function ListVMsAssociatedToTags() {
         }
 
         if ($TagOperator -eq "OR") {
-            $result | Out-GridView -Title "VMs associated to Tags (cache)"
+            $result | Out-GridView -Title "VMs associated to Tags"
         } else {
             $VMCommon = $result | Group-Object -Property VM | Where-Object { $_.Count -eq $useTheseTags.Count } | Select-Object -Property @{Name='VM';Expression={$_.Name}}
             if ($VMCommon.Count -gt 0) {
-                $VMCommon | Out-GridView -Title "Only VMs associated with all Tags (cache)"
+                $VMCommon | Out-GridView -Title "Only VMs associated with all Tags"
             } else {
                 Write-Host "There are not VMs associated with all Tags" -ForegroundColor Red
             }
@@ -873,11 +872,11 @@ function ListObjectsAssociatedToTags() {
         }
 
         if ($TagOperator -eq "OR") {
-            $result | Out-GridView -Title "Objects associated to Tags (cache)"
+            $result | Out-GridView -Title "Objects associated to Tags"
         } else {
             $ObjCommon = $result | Group-Object -Property Name | Where-Object { $_.Count -eq $useTheseTags.Count } | Select-Object -Property Name
             if ($ObjCommon.Count -gt 0) {
-                $ObjCommon | Out-GridView -Title "Only Objects associated with all Tags (cache)"
+                $ObjCommon | Out-GridView -Title "Only Objects associated with all Tags"
             } else {
                 Write-Host "There are not Objects associated with all Tags" -ForegroundColor Red
             }
@@ -934,7 +933,7 @@ function SearchTag() {
     }
 
     if ($result) {
-        $result | Out-GridView -Title "Tag found (cache)"
+        $result | Out-GridView -Title "Tag found"
 
         if ($ExportCSV) {
             if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
