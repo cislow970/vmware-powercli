@@ -28,7 +28,7 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 1. ***RefreshCacheVM*** Make the local cache of virtual machine IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)  
+	- -VIServer: vCenter to work on (*)_
 
 	2. Examples:
 	- ``RefreshCacheVM -VIServer vc.domain.local``
@@ -36,7 +36,7 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 2. ***RefreshCacheCluster*** Make the local cache of cluster IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)  
+	- -VIServer: vCenter to work on (*)_
 
 	2. Examples:
 	- ``RefreshCacheCluster -VIServer vc.domain.local``
@@ -44,7 +44,7 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 3. ***RefreshCacheESX*** Make the local cache of ESX IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)  
+	- -VIServer: vCenter to work on (*)_
 
 	2. Examples:
 	- ``RefreshCacheESX -VIServer vc.domain.local``
