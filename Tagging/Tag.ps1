@@ -414,7 +414,7 @@ function ListTagsAssociatedToVM() {
 
             $result | Out-GridView -Title "VM ${VMName} Tags"
         } else {
-            Write-Host "VM $VMName is not associated to any Tag" -ForegroundColor Red
+            Write-Host "VM ${VMName} is not associated to any Tag" -ForegroundColor Red
             Disconnect-CisServer -Server $VIServer -Confirm:$false
             break
         }
