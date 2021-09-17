@@ -1,4 +1,4 @@
-# Query tag in PowerCLI
+# Query tags with PowerCLI
 
 The cmdlets use a local cache of the IDs of the following objects: VM, Tag, Category, Cluster, ESX, Datastore. The cache is based on data structures in JSON format in order to speed up the queries, limiting the interaction with the vCenter to the only request of the "Tag - Object" associations.
 
