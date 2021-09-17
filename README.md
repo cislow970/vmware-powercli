@@ -28,7 +28,7 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 1. ***RefreshCacheVM*** Make the local cache of virtual machine IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)<br/>
+	- -VIServer: vCenter to work on (*)&nbsp;
 
 	2. Examples:
 	- ``RefreshCacheVM -VIServer vc.domain.local``
