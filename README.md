@@ -10,7 +10,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 
 2. Open Powershell and go to the folder where the ***Tag.ps1*** file was saved.
 
-3. Run the following command to load the cmdlets into memory: **. .\Tag.ps1**
+3. Run the following command to load the cmdlets into memory: ``. .\Tag.ps1``
 
 # Usage cmdlets
 
