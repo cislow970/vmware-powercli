@@ -28,42 +28,42 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 1. ***RefreshCacheVM*** Make the local cache of virtual machine IDs.
 
 	1. Cmdlet options:
-	* -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	* ``RefreshCacheVM -VIServer vc.domain.local``
+		* ``RefreshCacheVM -VIServer vc.domain.local``
 
 2. ***RefreshCacheCluster*** Make the local cache of cluster IDs.
 
 	1. Cmdlet options:
-	* -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	* ``RefreshCacheCluster -VIServer vc.domain.local``
+		* ``RefreshCacheCluster -VIServer vc.domain.local``
 
 3. ***RefreshCacheESX*** Make the local cache of ESX IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	- ``RefreshCacheESX -VIServer vc.domain.local``
+		* ``RefreshCacheESX -VIServer vc.domain.local``
 
 4. ***RefreshCacheDatastore*** Make the local cache of datastore IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	- ``RefreshCacheDatastore -VIServer vc.domain.local``
+		* ``RefreshCacheDatastore -VIServer vc.domain.local``
 
 5. ***RefreshCacheTag*** Make the local cache of tag IDs.
 
 	1. Cmdlet options:
-	- -VIServer: vCenter to work on (*)
+		* -VIServer: vCenter to work on (*)
 
 	2. Examples:
-	- ``RefreshCacheTag -VIServer vc.domain.local``
+		* ``RefreshCacheTag -VIServer vc.domain.local``
 
 6. ***RefreshCacheCategory*** Make the local cache of category IDs.
 
