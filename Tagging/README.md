@@ -16,7 +16,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 
 Each cmdlet requires the insertion of valid credentials to authenticate to the vCenter where one of the operations indicated below is to be performed. Cache refresh cmdlets should only be used when it is assumed that the content of the vCenter may have changed due to the creation of new objects and new associations.
 
-It is necessary to make manually a working directory, for example "C:\Tagging", where to save the cache and the results of the queries. It must be mapped at the head of the ***Tag.ps1*** file:
+It is necessary to make manually a working directory, for example "C:\Tagging", where to save the cache and the results of the queries. The working directory is mapped at the head of the ***Tag.ps1*** file:
 
 ``$global:Tagging = "C:\Tagging"``
 
