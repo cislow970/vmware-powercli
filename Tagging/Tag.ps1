@@ -1,12 +1,27 @@
 #---------------------------------------------------------------------------
 # Author: <danilo.cilento@gmail.com>
 # Desc:   Tag query
-# Date:   Sep 07, 2021
+# Date:   Sep 20, 2021
 #---------------------------------------------------------------------------
 
 $global:Tagging = "C:\Tagging"
 
 function RefreshCacheVM() {
+	<#
+		.SYNOPSIS
+			Make the local cache of virtual machine IDs.
+		   
+		.DESCRIPTION
+			This function make the local cache of virtual machine IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheVM -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -46,6 +61,21 @@ function RefreshCacheVM() {
 }
 
 function RefreshCacheCluster() {
+	<#
+		.SYNOPSIS
+			Make the local cache of cluster IDs.
+		   
+		.DESCRIPTION
+			This function make the local cache of cluster IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheCluster -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer
     )
@@ -85,6 +115,21 @@ function RefreshCacheCluster() {
 }
 
 function RefreshCacheESX() {
+	<#
+		.SYNOPSIS
+			Make the local cache of ESX IDs.
+		   
+		.DESCRIPTION
+			This function make the local cache of ESX IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheESX -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer
     )
@@ -124,6 +169,21 @@ function RefreshCacheESX() {
 }
 
 function RefreshCacheDatastore() {
+	<#
+		.SYNOPSIS
+			Make the local cache of datastore IDs.
+		   
+		.DESCRIPTION
+			This function make the local cache of datastore IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheDatastore -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer
     )
@@ -163,6 +223,21 @@ function RefreshCacheDatastore() {
 }
 
 function RefreshCacheTag() {
+	<#
+		.SYNOPSIS
+			Make the local cache of tag IDs.
+		   
+		.DESCRIPTION
+			This function make the local cache of tag IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheTag -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -194,6 +269,21 @@ function RefreshCacheTag() {
 }
 
 function RefreshCacheCategory() {
+	<#
+		.SYNOPSIS
+			Make the local cache of category IDs.
+		   
+		.DESCRIPTION
+			This function make the local cache of category IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheCategory -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -225,6 +315,21 @@ function RefreshCacheCategory() {
 }
 
 function RefreshCacheTagxCategory() {
+	<#
+		.SYNOPSIS
+			Make the local cache of Tag IDs for each Category.
+		   
+		.DESCRIPTION
+			This function make the local cache of Tag IDs for each Category in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshCacheTagxCategory -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -257,6 +362,21 @@ function RefreshCacheTagxCategory() {
 }
 
 function LoadCacheVM() {
+	<#
+		.SYNOPSIS
+			Load the local cache of virtual machine IDs.
+		   
+		.DESCRIPTION
+			This function load the local cache of virtual machine IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheVM -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -272,6 +392,21 @@ function LoadCacheVM() {
 }
 
 function LoadCacheCluster() {
+	<#
+		.SYNOPSIS
+			Load the local cache of cluster IDs.
+		   
+		.DESCRIPTION
+			This function load the local cache of cluster IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheCluster -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer
     )
@@ -287,6 +422,21 @@ function LoadCacheCluster() {
 }
 
 function LoadCacheESX() {
+	<#
+		.SYNOPSIS
+			Load the local cache of ESX IDs.
+		   
+		.DESCRIPTION
+			This function load the local cache of ESX IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheESX -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer
     )
@@ -302,6 +452,21 @@ function LoadCacheESX() {
 }
 
 function LoadCacheDatastore() {
+	<#
+		.SYNOPSIS
+			Load the local cache of datastore IDs.
+		   
+		.DESCRIPTION
+			This function load the local cache of datastore IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheDatastore -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer
     )
@@ -317,6 +482,21 @@ function LoadCacheDatastore() {
 }
 
 function LoadCacheTag() {
+	<#
+		.SYNOPSIS
+			Load the local cache of tag IDs.
+		   
+		.DESCRIPTION
+			This function load the local cache of tag IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheTag -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -332,6 +512,21 @@ function LoadCacheTag() {
 }
 
 function LoadCacheCategory() {
+	<#
+		.SYNOPSIS
+			Load the local cache of category IDs.
+		   
+		.DESCRIPTION
+			This function load the local cache of category IDs in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheCategory -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -347,6 +542,21 @@ function LoadCacheCategory() {
 }
 
 function LoadCacheTagxCategory() {
+	<#
+		.SYNOPSIS
+			Load the local cache of Tag IDs for each Category.
+		   
+		.DESCRIPTION
+			This function load the local cache of Tag IDs for each Category in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> LoadCacheTagxCategory -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)] [String]$VIServer
 	)
@@ -362,6 +572,30 @@ function LoadCacheTagxCategory() {
 }
 
 function ListTagsAssociatedToVM() {
+	<#
+		.SYNOPSIS
+			Lists all tags associated with the specified virtual machine.
+		   
+		.DESCRIPTION
+			This function lists all tags associated with the specified virtual machine.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+
+		.PARAMETER VMName
+			Name of the virtual machine to search for associated tags. [mandatory paramater]
+
+		.PARAMETER ExportCSV
+			Save the result in CSV file
+
+		.EXAMPLE
+	 	    PS> ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X
+			
+		.EXAMPLE
+	 	    PS> ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X -ExportCSV
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer,
         [Parameter(Mandatory = $true)] [String]$VMName,
@@ -436,6 +670,30 @@ function ListTagsAssociatedToVM() {
 }
 
 function ListVMsAssociatedToTag() {
+	<#
+		.SYNOPSIS
+			Lists all virtual machines associated with the specified tag.
+		   
+		.DESCRIPTION
+			This function lists all virtual machines associated with the specified tag.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+
+		.PARAMETER TagName
+			Name of the tag to search for associated virtual machines. [mandatory paramater]
+
+		.PARAMETER ExportCSV
+			Save the result in CSV file
+
+		.EXAMPLE
+	 	    PS> ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA"
+			
+		.EXAMPLE
+	 	    PS> ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA" -ExportCSV
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer,
         [Parameter(Mandatory = $true)] [String]$TagName,
@@ -502,6 +760,31 @@ function ListVMsAssociatedToTag() {
 }
 
 function ListTagsAssociatedToVMs() {
+	<#
+		.SYNOPSIS
+			Lists the tags associated with the specified virtual machine list.
+		   
+		.DESCRIPTION
+			This function lists the tags associated with the specified virtual machine list. The names of the virtual machines 
+			to be queried must be entered in a TXT file, one for each row.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+
+		.PARAMETER VMList
+			File containing the list of virtual machines to search for associated tags (MAX 2000 VMs). [mandatory paramater]
+
+		.PARAMETER ExportCSV
+			Save the result in CSV file
+
+		.EXAMPLE
+	 	    PS> ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt"
+			
+		.EXAMPLE
+	 	    PS> ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt" -ExportCSV
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer,
         [Parameter(Mandatory = $true)] [String]$VMList,
@@ -602,6 +885,41 @@ function ListTagsAssociatedToVMs() {
 }
 
 function ListVMsAssociatedToTags() {
+	<#
+		.SYNOPSIS
+			Lists the virtual machines associated with the specified tag list.
+		   
+		.DESCRIPTION
+			This function lists the virtual machines associated with the specified tag list. The names of the tags 
+			to be queried must be placed in a TXT file, one for each row.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+
+		.PARAMETER TagList
+			File containing the list of tags to search for associated virtual machines (MAX 15 Tags). [mandatory paramater]
+
+		.PARAMETER TagOperator
+			If specified with value AND (different from default value OR) then the result will consist only of the virtual 
+			machines that have all the tags in the list in common (allowed values: OR | AND).
+
+		.PARAMETER ExportCSV
+			Save the result in CSV file
+
+		.EXAMPLE
+	 	    PS> ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt"
+			
+		.EXAMPLE
+	 	    PS> ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ExportCSV
+			
+		.EXAMPLE
+			PS> ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND
+
+		.EXAMPLE
+			PS> ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ExportCSV
+	#>
+
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer,
         [Parameter(Mandatory = $true)] [String]$TagList,
@@ -718,6 +1036,50 @@ function ListVMsAssociatedToTags() {
 }
 
 function ListObjectsAssociatedToTags() {
+	<#
+		.SYNOPSIS
+			Lists the objects of a given type associated with the specified tag list. 
+		   
+		.DESCRIPTION
+			This function lists the objects of a given type associated with the specified tag list. The names of the tags to be 
+			queried must be placed in a TXT file, one for each row.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+
+		.PARAMETER TagList
+			File containing the list of tags to search for associated objects (MAX 15 Tags). [mandatory paramater]
+
+		.PARAMETER TagOperator
+			If specified with value AND (different from default value OR) then the result will consist only of the objects 
+			that have all the tags in the list in common (allowed values: OR | AND).
+
+		.PARAMETER ObjectType
+			Type of object on which to search for association with the tags specified in the list (allowed values: Cluster | ESX | Datastore | VM | All). [mandatory paramater]
+
+		.PARAMETER ExportCSV
+			Save the result in CSV file
+
+		.EXAMPLE
+	 	    PS> ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType Datastore
+			
+		.EXAMPLE
+	 	    PS> ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType ESX
+			
+		.EXAMPLE
+			PS> ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType All
+
+		.EXAMPLE
+			PS> ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -ObjectType All -ExportCSV
+			
+		.EXAMPLE
+			PS> ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All
+			
+		.EXAMPLE
+			PS> ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All -ExportCSV
+	#>
+	
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer,
         [Parameter(Mandatory = $true)] [String]$TagList,
@@ -904,6 +1266,30 @@ function ListObjectsAssociatedToTags() {
 }
 
 function SearchTag() {
+	<#
+		.SYNOPSIS
+			Search for all tags containing the given string. 
+		   
+		.DESCRIPTION
+			This function search for all tags containing the given string.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+
+		.PARAMETER SearchString
+			String to search for. [mandatory paramater]
+
+		.PARAMETER ExportCSV
+			Save the result in CSV file
+
+		.EXAMPLE
+	 	    PS> SearchTag -VIServer vc.domain.local -SearchString "AUTOMATION"
+			
+		.EXAMPLE
+	 	    PS> SearchTag -VIServer vc.domain.local -SearchString "AUTOMATION" -ExportCSV
+	#>
+	
+	[CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)] [String]$VIServer,
         [Parameter(Mandatory = $true)] [String]$SearchString,

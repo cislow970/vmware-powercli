@@ -132,7 +132,7 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
-		* -TagList: File containing the list of tags to search for associated virtual machines. **(MAX 15 Tags)** (*)
+		* -TagList: File containing the list of tags to search for associated objects. **(MAX 15 Tags)** (*)
 		* -TagOperator: If specified with value AND ***(different from default value OR)*** then the result will consist only of the objects that have all the tags in the list in common **(allowed values: OR | AND)**
 		* -ObjectType: Type of object on which to search for association with the tags specified in the list **(allowed values: Cluster | ESX | Datastore | VM | All)** (*)
 		* -ExportCSV: Save the result in CSV file
@@ -145,7 +145,7 @@ The exports in CSV format are saved in the "TagQuery" folder in the working dire
 		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All``
 		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All -ExportCSV``
 
-13. ***SearchTag*** cerca tutti i tag che contengono la stringa indicata (utilizzo cache implicito). 
+13. ***SearchTag*** Search for all tags containing the given string. 
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
