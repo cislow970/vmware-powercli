@@ -2,6 +2,18 @@
 
 The cmdlets use a local cache of the IDs of the following objects: VM, Tag, Category, Cluster, ESX, Datastore. The cache is based on data structures in JSON format in order to speed up the queries, limiting the interaction with the vCenter to the only request of the "Tag - Object" associations.
 
+# Configuration cmdlets
+
+The cmdlets use the credentials to authentication to the vCenter where one of the operations indicated below is to be performed. Cache refresh cmdlets should only be used when it is assumed that the content of the vCenter may have changed due to the creation of new objects and new associations.
+
+It is necessary to make manually a working directory, for example "C:\Tagging", where to save the credentials, cache and the results of the queries. The working directory is mapped at the head of the ***Tag.ps1*** file:
+
+``$global:Tagging = "C:\Tagging"``
+
+* The credentials are saved on file "creds.xml" within the working directory defined above.
+* The cache is created in the "TagCache" folder within the working directory defined above.
+* The exports in CSV format are saved in the "TagQuery" folder in the working directory defined above.
+
 # Loading cmdlets
 
 To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must be loaded into memory:
@@ -10,18 +22,11 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 
 2. Open Powershell and go to the folder where the ***Tag.ps1*** file was saved.
 
-3. Run the following command to load the cmdlets into memory: ``. .\Tag.ps1``
+3. Configure working directory as described on previous section. 
+
+4. Run the following command to load the cmdlets into memory: ``. .\Tag.ps1``
 
 # Usage cmdlets
-
-Each cmdlet requires the insertion of valid credentials to authenticate to the vCenter where one of the operations indicated below is to be performed. Cache refresh cmdlets should only be used when it is assumed that the content of the vCenter may have changed due to the creation of new objects and new associations.
-
-It is necessary to make manually a working directory, for example "C:\Tagging", where to save the cache and the results of the queries. The working directory is mapped at the head of the ***Tag.ps1*** file:
-
-``$global:Tagging = "C:\Tagging"``
-
-The cache is created in the "TagCache" folder within the working directory defined above.
-The exports in CSV format are saved in the "TagQuery" folder in the working directory defined above.
 
 (*) = mandatory option
 

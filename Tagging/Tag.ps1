@@ -1,10 +1,36 @@
 #---------------------------------------------------------------------------
 # Author: <danilo.cilento@gmail.com>
 # Desc:   Tag query
-# Date:   Sep 20, 2021
+# Date:   Oct 29, 2021
 #---------------------------------------------------------------------------
 
 $global:Tagging = "C:\Tagging"
+
+if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
+    New-Item -ItemType Directory -Path "$global:Tagging\TagCache" | Out-Null
+}
+   
+if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
+    New-Item -ItemType Directory -Path "$global:Tagging\TagQuery" | Out-Null
+}
+
+function ReadCredentials() {
+    if (-not (Test-Path -Path "$global:Tagging\cred.xml")) {
+        Write-Host "Encrypted file with credentials does not exists!" -ForegroundColor Red
+        $Creds = SaveCredentials
+        $Creds
+    } else {
+        $Creds = Import-CliXml -Path "$global:Tagging\cred.xml"
+        $Creds
+    }
+}
+
+function SaveCredentials() {
+    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    Write-Host "Saving credentials to encrypted file in $global:Tagging ..." -ForegroundColor Green
+    $Creds | Export-CliXml -Path "$global:Tagging\cred.xml"
+    $Creds
+}
 
 function RefreshCacheVM() {
 	<#
@@ -27,7 +53,7 @@ function RefreshCacheVM() {
 	)
 
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-VIServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -50,12 +76,16 @@ function RefreshCacheVM() {
         }
     }
     
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
-    }
-
     # Save VM IDs to JSON file
-    $VMIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_vm.json"
+    Write-Host "Saving Cache VM to JSON file..." -NoNewline
+    try {
+        $VMIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_vm.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
+    }
 
     Disconnect-VIServer -Server $VIServer -Confirm:$false
 }
@@ -81,7 +111,7 @@ function RefreshCacheCluster() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-VIServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -104,12 +134,16 @@ function RefreshCacheCluster() {
         }
     }
     
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
-    }
-
     # Save Cluster IDs to JSON file
-    $ClusterIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_cluster.json"
+    Write-Host "Saving Cache Cluster to JSON file..." -NoNewline
+    try {
+        $ClusterIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_cluster.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
+    }
 
     Disconnect-VIServer -Server $VIServer -Confirm:$false
 }
@@ -135,7 +169,7 @@ function RefreshCacheESX() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-VIServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -158,12 +192,16 @@ function RefreshCacheESX() {
         }
     }
     
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
-    }
-
     # Save ESX IDs to JSON file
-    $ESXIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_esx.json"
+    Write-Host "Saving Cache ESX to JSON file..." -NoNewline
+    try {
+        $ESXIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_esx.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
+    }
 
     Disconnect-VIServer -Server $VIServer -Confirm:$false
 }
@@ -189,7 +227,7 @@ function RefreshCacheDatastore() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-VIServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -212,12 +250,16 @@ function RefreshCacheDatastore() {
         }
     }
     
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
-    }
-
     # Save Datastore IDs to JSON file
-    $DatastoreIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_datastore.json"
+    Write-Host "Saving Cache Datastore to JSON file..." -NoNewline
+    try {
+        $DatastoreIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_datastore.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
+    }
 
     Disconnect-VIServer -Server $VIServer -Confirm:$false
 }
@@ -243,7 +285,7 @@ function RefreshCacheTag() {
 	)
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -258,12 +300,16 @@ function RefreshCacheTag() {
         }
     }
 
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
-    }
-
     # Save tag IDs to JSON file
-    $TagIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_tag.json"
+    Write-Host "Saving Cache Tag to JSON file..." -NoNewline
+    try {
+        $TagIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_tag.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
+    }
 
     Disconnect-CisServer -Server $VIServer -Confirm:$false
 }
@@ -289,7 +335,7 @@ function RefreshCacheCategory() {
 	)
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -304,12 +350,16 @@ function RefreshCacheCategory() {
         }
     }
 
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
-    }
-
     # Save category IDs to JSON file
-    $CategoryIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_category.json"
+    Write-Host "Saving Cache Category to JSON file..." -NoNewline
+    try {
+        $CategoryIDs | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_category.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
+    }
 
     Disconnect-CisServer -Server $VIServer -Confirm:$false
 }
@@ -335,7 +385,7 @@ function RefreshCacheTagxCategory() {
 	)
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -351,14 +401,60 @@ function RefreshCacheTagxCategory() {
         }
     }
 
-    if (-not (Test-Path -Path "$global:Tagging\TagCache")) {
-        New-Item -ItemType Directory -Path "$global:Tagging\TagCache"
+    # Save tag IDs per category to JSON file
+    Write-Host "Saving cache TagxCategory to JSON file..." -NoNewline
+    try {
+        $TagIDsxCategory | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_tagxcategory.json" -ErrorAction Stop
+        Write-Host "[OK]" -ForegroundColor Green
+    } catch {
+		$ErrorMessage = $_.Exception.Message
+		$FailedItem = $_.Exception.ItemName
+		Write-Host "[ERROR]" -ForegroundColor Red
     }
 
-    # Save tag IDs per category to JSON file
-    $TagIDsxCategory | ConvertTo-JSON | Out-File "$global:Tagging\TagCache\${VIServer}_tagxcategory.json"
-
     Disconnect-CisServer -Server $VIServer -Confirm:$false
+}
+
+function RefreshAllCache() {
+	<#
+		.SYNOPSIS
+			Make all local cache for query support on Tag.
+		   
+		.DESCRIPTION
+			This function make the local cache of the IDs of the objects VM, Tag, Category, Cluster, ESX and Datastore in JSON format.
+		   
+		.PARAMETER VIServer
+			vCenter to work on. [mandatory paramater]
+		   
+		.EXAMPLE
+	 	    PS> RefreshAllCache -VIServer vc.domain.local
+	#>
+
+	[CmdletBinding()]
+	param (
+		[Parameter(Mandatory = $true)] [String]$VIServer
+	)
+
+    Write-Host "Refresh Cache VM..."
+    RefreshCacheVM -VIServer $VIServer
+
+    Write-Host "Refresh Cache Cluster..."
+    RefreshCacheCluster -VIServer $VIServer
+
+    Write-Host "Refresh Cache ESX..."
+    RefreshCacheESX -VIServer $VIServer
+
+    Write-Host "Refresh Cache Datastore..."
+    RefreshCacheDatastore -VIServer $VIServer
+
+    Write-Host "Refresh Cache Tag..."
+    RefreshCacheTag -VIServer $VIServer
+
+    Write-Host "Refresh Cache Category..."
+    RefreshCacheCategory -VIServer $VIServer
+
+    Write-Host "Refresh Cache TagxCategory..."
+    RefreshCacheTagxCategory -VIServer $VIServer
 }
 
 function LoadCacheVM() {
@@ -603,7 +699,7 @@ function ListTagsAssociatedToVM() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
     
@@ -659,10 +755,6 @@ function ListTagsAssociatedToVM() {
     }
 
     if ($ExportCSV) {
-        if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
-            New-Item -ItemType Directory -Path "$global:Tagging\TagQuery"
-        }
-    
         $result | Export-Csv -NoTypeInformation -Delimiter ";" -Path "$global:Tagging\TagQuery\${VMName}_Tags.csv"
     }
 
@@ -701,7 +793,7 @@ function ListVMsAssociatedToTag() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
 
@@ -748,10 +840,6 @@ function ListVMsAssociatedToTag() {
     }
 	
     if ($ExportCSV) {
-        if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
-            New-Item -ItemType Directory -Path "$global:Tagging\TagQuery"
-        }
-    
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
         $result | Export-Csv -NoTypeInformation -Delimiter ";" -Path "$global:Tagging\TagQuery\VMsAssociatedToSingleTag_${timestamp}.csv"
     }
@@ -792,7 +880,7 @@ function ListTagsAssociatedToVMs() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
 
@@ -873,10 +961,6 @@ function ListTagsAssociatedToVMs() {
     }
 
     if ($ExportCSV) {
-        if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
-            New-Item -ItemType Directory -Path "$global:Tagging\TagQuery"
-        }
-    
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
         $result | Export-Csv -NoTypeInformation -Delimiter ";" -Path "$global:Tagging\TagQuery\TagsAssociatedToVMs_${timestamp}.csv"
     } 
@@ -928,7 +1012,7 @@ function ListVMsAssociatedToTags() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
 
@@ -1020,10 +1104,6 @@ function ListVMsAssociatedToTags() {
     }
 
     if ($ExportCSV) {
-        if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
-            New-Item -ItemType Directory -Path "$global:Tagging\TagQuery"
-        }
-    
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
         if ($TagOperator -eq "OR") {
             $result | Export-Csv -NoTypeInformation -Delimiter ";" -Path "$global:Tagging\TagQuery\VMsAssociatedToTags_${timestamp}.csv"
@@ -1089,7 +1169,7 @@ function ListObjectsAssociatedToTags() {
     )
     
     # Get credentials
-    $Creds = $host.ui.PromptForCredential("Login to vCenter", "Please enter your user name and password.", "", "")
+    $Creds = ReadCredentials
     
     Connect-CisServer -Server $VIServer -Credential $Creds | Out-Null
 
@@ -1250,10 +1330,6 @@ function ListObjectsAssociatedToTags() {
     }
     
     if ($ExportCSV) {
-        if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
-            New-Item -ItemType Directory -Path "$global:Tagging\TagQuery"
-        }
-    
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
         if ($TagOperator -eq "OR") {
             $result | Export-Csv -NoTypeInformation -Delimiter ";" -Path "$global:Tagging\TagQuery\ObjectsAssociatedToTags_${timestamp}.csv"
@@ -1322,10 +1398,6 @@ function SearchTag() {
         $result | Out-GridView -Title "Tag found"
 
         if ($ExportCSV) {
-            if (-not (Test-Path -Path "$global:Tagging\TagQuery")) {
-                New-Item -ItemType Directory -Path "$global:Tagging\TagQuery"
-            }
-        
             $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
             $result | Export-Csv -NoTypeInformation -Delimiter ";" -Path "$global:Tagging\TagQuery\SearchTag_${timestamp}.csv"
         }
