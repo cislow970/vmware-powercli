@@ -86,7 +86,15 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 	2. Examples:
 		* ``RefreshCacheTagxCategory -VIServer vc.domain.local``
 
-8. ***ListTagsAssociatedToVM*** Lists all tags associated with the specified virtual machine.
+8. ***RefreshAllCache*** Make all local cache for query support on Tag.
+
+	1. Cmdlet options:
+		* -VIServer: vCenter to work on (*)
+
+	2. Examples:
+		* ``RefreshAllCache -VIServer vc.domain.local``
+
+9. ***ListTagsAssociatedToVM*** Lists all tags associated with the specified virtual machine.
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
@@ -97,7 +105,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 		* ``ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X``
 		* ``ListTagsAssociatedToVM -VIServer vc.domain.local -VMName 02SRV00H6X -ExportCSV``
 
-9. ***ListVMsAssociatedToTag*** Lists all virtual machines associated with the specified tag.
+10. ***ListVMsAssociatedToTag*** Lists all virtual machines associated with the specified tag.
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
@@ -108,7 +116,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 		* ``ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA"``
 		* ``ListVMsAssociatedToTag -VIServer vc.domain.local -TagName "SA" -ExportCSV``
 
-10. ***ListTagsAssociatedToVMs*** Lists the tags associated with the specified virtual machine list. The names of the virtual machines to be queried must be entered in a TXT file, one for each row.
+11. ***ListTagsAssociatedToVMs*** Lists the tags associated with the specified virtual machine list. The names of the virtual machines to be queried must be entered in a TXT file, one for each row.
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
@@ -119,7 +127,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 		* ``ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt"``
 		* ``ListTagsAssociatedToVMs -VIServer vc.domain.local -VMList "C:\Temp\vmlist.txt" -ExportCSV``
 
-11. ***ListVMsAssociatedToTags*** Lists the virtual machines associated with the specified tag list. The names of the tags to be queried must be placed in a TXT file, one for each row.
+12. ***ListVMsAssociatedToTags*** Lists the virtual machines associated with the specified tag list. The names of the tags to be queried must be placed in a TXT file, one for each row.
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
@@ -133,7 +141,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 		* ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND``
 		* ``ListVMsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ExportCSV``
 
-12. ***ListObjectsAssociatedToTags*** Lists the objects of a given type associated with the specified tag list. The names of the tags to be queried must be placed in a TXT file, one for each row.
+13. ***ListObjectsAssociatedToTags*** Lists the objects of a given type associated with the specified tag list. The names of the tags to be queried must be placed in a TXT file, one for each row.
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
@@ -150,7 +158,7 @@ To run the cmdlets, after downloading the ***Tag.ps1*** file, its contents must 
 		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All``
 		* ``ListObjectsAssociatedToTags -VIServer vc.domain.local -TagList "C:\Temp\taglist.txt" -TagOperator AND -ObjectType All -ExportCSV``
 
-13. ***SearchTag*** Search for all tags containing the given string. 
+14. ***SearchTag*** Search for all tags containing the given string. 
 
 	1. Cmdlet options:
 		* -VIServer: vCenter to work on (*)
