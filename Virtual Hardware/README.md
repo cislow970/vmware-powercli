@@ -1,1 +1,1 @@
-Get vHW reports for each VM on the ESX where it is running.
+vHW report for each VM
