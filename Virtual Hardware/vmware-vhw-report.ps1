@@ -2,7 +2,7 @@
 # Description:   	Retrieve virtual hardware informations
 # Date:   			Nov 03, 2020
 # Author: 			Danilo Cilento (danilo.cilento@gmail.com)
-# References:		https://kb.vmware.com/s/article/2143832 (ESXi Build numbers and versions)
+# References:		https://kb.vmware.com/s/article/2143832 (ESXi Build number and version)
 #					https://kb.vmware.com/s/article/1003746 (Virtual Hardware Version)
 #
 #					Product					Major release	Build Number	Release Date	vHW Version		
@@ -20,7 +20,7 @@
 param(
 	[Parameter(
 		Mandatory = $true,
-		HelpMessage = 'Enter the report name with complete file path!'
+		HelpMessage = 'Enter the report name with complete file path (CSV format)!'
 	)] [String]$Save
 )
 
