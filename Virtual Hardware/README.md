@@ -1,7 +1,7 @@
 # Get current and maximum reachable vHW for each VM.
 
 * References:		
-	[ESXi Build number and version](https://kb.vmware.com/s/article/2143832)
+	[ESXi Build number and version](https://kb.vmware.com/s/article/2143832)  
 	[Virtual Hardware Version](https://kb.vmware.com/s/article/1003746)
 
 
