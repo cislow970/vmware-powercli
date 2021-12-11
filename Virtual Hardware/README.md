@@ -3,8 +3,8 @@
 References:  
 * [ESXi Build number and version](https://kb.vmware.com/s/article/2143832)
 * [Virtual Hardware Version](https://kb.vmware.com/s/article/1003746)
-
-
+  
+  
 | Product | Major release |	Build Number | Release Date | vHW Version |
 | :--- | :--- | :--- | :--- | :--- |
 | ESXi 7.0 U1 (7.0.1) |	7.0.0 | 16850804 | 10/06/2020 | vmx-18 |
