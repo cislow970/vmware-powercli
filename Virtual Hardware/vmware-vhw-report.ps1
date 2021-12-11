@@ -2,7 +2,7 @@
 # Description:   	Retrieve virtual hardware informations
 # Date:   			Nov 03, 2020
 # Author: 			Danilo Cilento (danilo.cilento@gmail.com)
-# References:		https://kb.vmware.com/s/article/2143832 (ESXi Build number and version)
+# References:		https://kb.vmware.com/s/article/2143832 (ESXi Build numbers and versions)
 #					https://kb.vmware.com/s/article/1003746 (Virtual Hardware Version)
 #
 #					Product					Major release	Build Number	Release Date	vHW Version		
