@@ -23,5 +23,5 @@ Example:
 	* Connect-VIServer <your_vcenter>
 	
 2. Get vHW report for each VM in the vCenter:
-	* vmware-vhw-report.ps1 -Save C:\Temp\<your_vcenter>.csv
+	* vmware-vhw-report.ps1 -Save C:\Temp\\<your_vcenter>.csv
 
