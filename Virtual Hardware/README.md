@@ -16,3 +16,12 @@ References:
 | ESXi 5.5 | 5.5.0 | 1331820 | 09/22/2013 | vmx-10 |
 | ESXi 5.1 | 5.1.0 | 799733	| 09/10/2012 | vmx-09 |
 | ESXi 5.0 | 5.0.0 | 469512 | 08/24/2011 | vmx-08 |
+
+
+Example:
+1. Connect to vCenter:
+	* Connect-VIServer <your_vcenter>
+	
+2. Get vHW report for each VM in the vCenter:
+	* vmware-vhw-report.ps1 -Save C:\Temp\<your_vcenter>.csv
+
