@@ -1,11 +1,13 @@
 #---------------------------------------------------------------------------------------------------------
 # Description:   	Retrieve virtual hardware informations
-# Date:   			Nov 03, 2020
+# Date:   			Nov 29, 2022
 # Author: 			Danilo Cilento (danilo.cilento@gmail.com)
 # References:		https://kb.vmware.com/s/article/2143832 (ESXi Build numbers and versions)
 #					https://kb.vmware.com/s/article/1003746 (Virtual Hardware Version)
 #
 #					Product					Major release	Build Number	Release Date	vHW Version		
+#					ESXi 8.0				8.0.0			20513097		11/10/2022		vmx-20
+#					ESXi 7.0 U2 (7.0.2)		7.0.0			17630552		09/03/2021		vmx-19
 #					ESXi 7.0 U1 (7.0.1)		7.0.0			16850804		10/06/2020      vmx-18			
 #					ESXi 7.0 (7.0.0)		7.0.0			15843807		04/02/2020      vmx-17			
 #					ESXi 6.7 U2				6.7.0			13006603		04/11/2019      vmx-15			
@@ -28,6 +30,20 @@ New-VIProperty -Name ToolsVersion -ObjectType VirtualMachine -ValueFromExtension
 New-VIProperty -Name ToolsVersionStatus -ObjectType VirtualMachine -ValueFromExtensionProperty 'Guest.ToolsVersionStatus' -Force | Out-Null
 
 $vHWmatrix = @(
+	@{
+		product = 'ESXi 8.0'
+		major = '8.0.0'
+		build = 20513097
+		date = '11/10/2022'
+		vhw = 'vmx-20'
+	},
+	@{
+		product = 'ESXi 7.0 U2 (7.0.2)'
+		major = '7.0.0'
+		build = 17630552
+		date = '09/03/2021'
+		vhw = 'vmx-19'
+	},
 	@{
 		product = 'ESXi 7.0 U1 (7.0.1)'
 		major = '7.0.0'
@@ -106,43 +122,45 @@ $ESX | %{
 	$esxVersion = $esxMoreInfo.Config.Product.Version
 	$esxBuild = $esxMoreInfo.Config.Product.Build
 	
-	foreach ($elem in $vHWmatrix) {
-		if ($esxVersion -eq $elem.major) {
-			if ([Int]$esxBuild -ge [Int]$elem.build) {
-				$vHWmax = $elem.vhw
-				break
+	if (($esxVersion) -and ($esxBuild)) {
+		foreach ($elem in $vHWmatrix) {
+			if (($esxVersion.Substring(0, $esxVersion.Length - 2)) -eq (($elem.major).Substring(0, ($elem.major).Length - 2))) {
+				if ([Int]$esxBuild -ge [Int]$elem.build) {
+					$vHWmax = $elem.vhw
+					break
+				}
 			}
 		}
-	}
-	
-	$VMs = $_ | Get-VM
-	$VMs | %{
-		$row = "" | Select "VM Name",
-						   "Guest OS",
-						   "Power State",
-						   "Current vHW",
-						   "Maximum vHW",
-						   "Tools Version",
-						   "Tools Version Status",
-						   "Hypervisor Name",
-						   "Hypervisor Type",
-						   "Hypervisor Version",
-						   "Hypervisor Build",
-						   "Cluster Name"
-		$row."VM Name" = $_.Name
-		$row."Guest OS" = $_.ExtensionData.Config.GuestFullName
-		$row."Power State" = $_.PowerState
-		$row."Current vHW" = $_.HardwareVersion
-		$row."Maximum vHW" = $vHWmax
-		$row."Tools Version" = $_.ToolsVersion
-		$row."Tools Version Status" = $_.ToolsVersionStatus
-		$row."Hypervisor Name" = $esxName
-		$row."Hypervisor Type" = $esxType
-		$row."Hypervisor Version" = $esxVersion
-		$row."Hypervisor Build" = $esxBuild
-		$row."Cluster Name" = $clusterName
 
-		$vHWreport += $row
+		$VMs = $_ | Get-VM
+		$VMs | %{
+			$row = "" | Select "VM Name",
+							   "Guest OS",
+							   "Power State",
+							   "Current vHW",
+							   "Maximum vHW",
+							   "Tools Version",
+							   "Tools Version Status",
+							   "Hypervisor Name",
+							   "Hypervisor Type",
+							   "Hypervisor Version",
+							   "Hypervisor Build",
+							   "Cluster Name"
+			$row."VM Name" = $_.Name
+			$row."Guest OS" = $_.ExtensionData.Config.GuestFullName
+			$row."Power State" = $_.PowerState
+			$row."Current vHW" = $_.HardwareVersion
+			$row."Maximum vHW" = $vHWmax
+			$row."Tools Version" = $_.ToolsVersion
+			$row."Tools Version Status" = $_.ToolsVersionStatus
+			$row."Hypervisor Name" = $esxName
+			$row."Hypervisor Type" = $esxType
+			$row."Hypervisor Version" = $esxVersion
+			$row."Hypervisor Build" = $esxBuild
+			$row."Cluster Name" = $clusterName
+
+			$vHWreport += $row
+		}
 	}
 }
 

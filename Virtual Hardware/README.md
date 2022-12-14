@@ -7,6 +7,8 @@ References:
   
 | Product | Major release |	Build Number | Release Date | vHW Version |
 | :--- | :--- | :--- | :--- | :--- |
+|ESXi 8.0 |	8.0.0 | 20513097 | 11/10/2022 |	vmx-20 |
+|ESXi 7.0 U2 (7.0.2) | 7.0.0 | 17630552 | 09/03/2021 | vmx-19 |
 | ESXi 7.0 U1 (7.0.1) |	7.0.0 | 16850804 | 10/06/2020 | vmx-18 |
 | ESXi 7.0 (7.0.0) | 7.0.0 | 15843807 |	04/02/2020 | vmx-17 |
 | ESXi 6.7 U2 |	6.7.0 |	13006603 | 04/11/2019 | vmx-15 |
@@ -19,9 +21,7 @@ References:
 
 
 Example:
-1. Connect to vCenter:
-	* Connect-VIServer <your_vcenter>
+1. Connect to vCenter: ``Connect-VIServer <your_vcenter>``
 	
-2. Get vHW report for each VM in the vCenter:
-	* vmware-vhw-report.ps1 -Save C:\Temp\\<your_vcenter>.csv
+2. Get vHW report for each VM in the vCenter: ``vmware-vhw-report.ps1 -Save C:\Temp\<your_vcenter>.csv``
 
